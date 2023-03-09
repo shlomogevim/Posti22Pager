@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainCommentLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back_ui"
+    android:keepScreenOn="true"
+    tools:context=".activities.PostDetailesActivity">
+
+
+    <LinearLayout
+        android:id="@+id/button_layout"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/definitionBtn"
+            style="@style/GreenButtonStyle"
+            android:text="הגדרות" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/nameCurrentUserName"
+            style="@style/GreenButtonStyle"
+            android:text="אורח" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/signInBtn"
+            style="@style/GreenButtonStyle"
+            android:text="הכנס" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/button_layout_2"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/button_layout"
+        >
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/helpBtn"
+            style="@style/GreenButtonStyle"
+            android:text="עזרה" />
+
+
+        <TextView
+            android:id="@+id/postNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:background="@drawable/button_black_background"
+            android:backgroundTint="@color/broun1"
+            android:fontFamily="@font/a103_gadi_almog_regular_aaa"
+
+            android:gravity="center"
+            android:padding="1dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="100"
+            android:textColor="@color/orenge1"
+            android:textSize="16sp" />
+        />
+
+        <ToggleButton
+            android:id="@+id/movingModeBtn"
+            style="@style/AppTheme.Button1"
+   android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_toEndOf="@+id/postNumber"
+            android:background="@drawable/category_toggle_moving"
+
+            android:textColor="@color/white"
+            android:textOff="סטטי"
+            android:textOn="דינמי"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/textPost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_layout_2">
+
+        <TextView
+            android:id="@+id/tvPost1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_black_background"
+            android:backgroundTint="@color/broun1"
+            android:fontFamily="@font/a103_gadi_almog_regular_aaa"
+            android:gravity="center"
+            android:layout_marginTop="1dp"
+            android:padding="2dp"
+            android:text="שורה אחת"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_post"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvPost2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_black_background"
+            android:backgroundTint="@color/broun1"
+            android:fontFamily="@font/a103_gadi_almog_regular_aaa"
+            android:gravity="center"
+            android:padding="2dp"
+            android:text="שורה אחת"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_post"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvPost3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_black_background"
+            android:backgroundTint="@color/broun1"
+            android:fontFamily="@font/a103_gadi_almog_regular_aaa"
+            android:padding="2dp"
+            android:text="שורה אחת"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_post"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvPost4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_black_background"
+            android:backgroundTint="@color/broun1"
+            android:fontFamily="@font/a103_gadi_almog_regular_aaa"
+            android:padding="2dp"
+            android:text="שורה אחת"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_post"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvPost5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_black_background"
+            android:backgroundTint="@color/broun1"
+            android:fontFamily="@font/a103_gadi_almog_regular_aaa"
+            android:padding="2dp"
+            android:text="שורה אחת"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_post"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvPost6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_black_background"
+            android:backgroundTint="@color/broun1"
+            android:fontFamily="@font/a103_gadi_almog_regular_aaa"
+            android:padding="2dp"
+            android:text="שורה אחת"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_post"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvPost7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_black_background"
+            android:backgroundTint="@color/broun1"
+            android:fontFamily="@font/a103_gadi_almog_regular_aaa"
+            android:padding="2dp"
+            android:text="שורה אחת"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_post"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvPost8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_black_background"
+            android:backgroundTint="@color/broun1"
+            android:fontFamily="@font/a103_gadi_almog_regular_aaa"
+            android:padding="2dp"
+            android:text="שורה אחת"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_post"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvPost9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_black_background"
+            android:backgroundTint="@color/broun1"
+            android:fontFamily="@font/a103_gadi_almog_regular_aaa"
+            android:padding="2dp"
+            android:text="שורה אחת"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_post"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/addCommentLayout"
+        android:layout_below="@id/textPost"
+        app:layout_constraintBottom_toTopOf="@+id/addCommentLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+    <RelativeLayout
+        android:id="@+id/addCommentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/comment_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image_comment"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
+            android:clickable="false"
+            android:src="@drawable/ic_send" />
+
+        <EditText
+            android:id="@+id/post_comment_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_toRightOf="@id/profile_image_comment"
+            android:clickable="false"
+            android:hint="ומה שיש לי להגיד הוא ..."
+            android:maxLines="9"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- android:layout_height="40dp"-->

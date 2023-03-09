@@ -1,6 +1,6 @@
 package com.example.posti22pager.model
 
-//import com.google.firebase.Timestamp
+import com.google.firebase.Timestamp
 
 data class Post(
     var postId:Int=0,
@@ -17,9 +17,8 @@ data class Post(
     var postTextColor:ArrayList<String> = arrayListOf<String>(),
     var postFontFamily:Int=0,
     var postRadiuas:Int=16,
-   // var timestamp: Timestamp?=null,
+    var timestamp: Timestamp?=null,
     var lineSpacing:Float=1.4f,
-//    var lineSpacing :Double? =1.4,
     var grade:Int=0,
     var videoUrl:String="",
     var videoText:String=""
