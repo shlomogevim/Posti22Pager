@@ -26,6 +26,7 @@ class DrawPostHelper: AppCompatActivity() {
     var position1=""
     var margin1=0
     var dis1=0
+
     fun drawPost( constraintLayout: ConstraintLayout, post: Post) {
        // var post=updateTextLocation(currentPost)
 
