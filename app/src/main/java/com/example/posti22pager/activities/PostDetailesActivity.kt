@@ -40,7 +40,7 @@ class PostDetailesActivity : AppCompatActivity() {
         pref = getSharedPreferences(SHARPREF_ALMA, Context.MODE_PRIVATE)
         currentPost = loadCurrentPost()
         pref.edit().putInt(SHARPREF_CURRENT_POST_NUM, currentPost.postNum).apply()
-        val moving = pref.getString(SHARPREF_MOVING_BACKGROUND, TRUE)
+        val moving = pref.getString(SHARPREF_MOVING_BACKGROUND, FALSE)
         binding.movingModeBtn.isChecked = moving == TRUE
 
         drawHeadline()
@@ -49,19 +49,21 @@ class PostDetailesActivity : AppCompatActivity() {
     }
 
     private fun btnSetting() {
-        binding.movingModeBtn.setOnClickListener {
-//           logi("PostDetailActivity 182    befor  btn.isChecked=${btn.isChecked}     ")
-            if (binding.movingModeBtn.isChecked == true) {
+        val btn=binding.movingModeBtn
+        logi("PostDetailActivity 53    befor  btn.isChecked=${btn.isChecked}     ")
+        btn.setOnClickListener {
+           logi("PostDetailActivity 55    befor  btn.isChecked=${btn.isChecked}     ")
+            if (btn.isChecked) {
                 pref.edit().putString(SHARPREF_MOVING_BACKGROUND, TRUE).apply()
 //                binding.movingModeBtn.isChecked =false
-//                logi("PostDetailActivity 185    after  btn.isChecked=${binding.movingModeBtn.isChecked}     ")
+                logi("PostDetailActivity 57    after  btn.isChecked=${btn.isChecked}     ")
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
 
             } else {
                 pref.edit().putString(SHARPREF_MOVING_BACKGROUND, FALSE).apply()
 //                binding.movingModeBtn.isChecked =true
-//                logi("PostDetailActivity 189    after  btn.isChecked=${binding.movingModeBtn.isChecked}     ")
+                logi("PostDetailActivity 64    after  btn.isChecked=${binding.movingModeBtn.isChecked}     ")
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }
@@ -91,7 +93,11 @@ class PostDetailesActivity : AppCompatActivity() {
         binding.textPost.setHorizontallyScrolling(false)
 
     }
+    fun logi(message: String) {
+        Log.i("gg", message)
+    }
 
+}
 
 
 
@@ -206,6 +212,5 @@ class PostDetailesActivity : AppCompatActivity() {
 
 
 
-}
 
 

@@ -2,12 +2,12 @@ package com.example.posti22pager.activities
 
 import android.content.Context
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
-import com.example.posti22pager.R
+import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.posti22pager.adapters.PostViewPagerAdapter
 import com.example.posti22pager.databinding.ActivityMainBinding
 import com.example.posti22pager.model.Post
@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onResume() {
         super.onResume()
-//       logi("MainActivity 63   onResume        sortSystem$sortSystem")
+//       logi("MainActivity 63   onResume        ")
         posts.clear()
         posts=loadPosts()
         createViewPager10()
@@ -47,9 +47,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun createViewPager10() {
 
+        val adapter =PostViewPagerAdapter(posts)
+        viewPager.adapter = adapter
+
+
+
 //        logi("posts1.size=${posts1.size}")
-        viewPager.adapter = PostViewPagerAdapter(posts)
+     //   viewPager.adapter = PostViewPagerAdapter(posts)
         viewPager.setOffscreenPageLimit(2)
+
         val cardFlipPageTransformer = CardFlipPageTransformer2()
         cardFlipPageTransformer.setScalable(false)
         viewPager.setPageTransformer(cardFlipPageTransformer)
@@ -139,6 +145,7 @@ class MainActivity : AppCompatActivity() {
     }
     private fun createViewPager(posts: ArrayList<Post>) {
         binding.viewpager.adapter = PostViewPagerAdapter(posts)
+
         //   viewPager.setPageTransformer(PostPageTransformer())
 
         val cardFlipPageTransformer = CardFlipPageTransformer2()

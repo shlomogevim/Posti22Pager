@@ -1,6 +1,7 @@
 package com.example.posti22pager.tools
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.Matrix
@@ -16,66 +17,30 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.res.ResourcesCompat
 import com.bumptech.glide.Glide
+import com.example.posti22pager.R
 import com.example.posti22pager.model.Post
+import com.flaviofaria.kenburnsview.KenBurnsView
 
 
-class DrawPostHelper: AppCompatActivity() {
+class DrawPostHelper(val context: Context): AppCompatActivity() {
     val helper= Helper()
-    lateinit var layout: ConstraintLayout
+    val pref =context.getSharedPreferences(SHARPREF_ALMA, Context.MODE_PRIVATE)
+    var movingBackgroundMode = pref.getString(SHARPREF_MOVING_BACKGROUND, FALSE)
+
     //    lateinit var currentPost:Post
     var position1=""
     var margin1=0
     var dis1=0
 
     fun drawPost( constraintLayout: ConstraintLayout, post: Post) {
-       // var post=updateTextLocation(currentPost)
-
-        layout=constraintLayout
-       setCurrentParameters(post)
-      loadImage(constraintLayout, post)
+        setCurrentParameters(post)
+      loadImageWithMove(constraintLayout, post)
       createText(constraintLayout,post)
 //        logi("34      currentPost.postNum=${currentPost.postNum}")
-
 //       ***********
 //      drawHelperPostNum(post,constraintLayout)
 //      ***********
     }
-
-  /*  private fun updateTextLocation(post: Post): Post {
-       val post1=updateTextSize(post)
-       when (post1.postNum){
-            4999000,4999034,4999035,4999053->{post1. textLocation = arrayListOf(10,-1,0,0,0,0, 0, 0) }                         //up
-            4999009,4999013, 4999014,4999015,4999016,4999018,4999019,4999020,4999025,4999028,4999029,4999030,4999031,4999032,4999033,4999036,4999037,4999038->{ post1. textLocation = arrayListOf(10,0,0,-1,0,0, 0, 0) }                        //down
-            4999048,4999051,4999052,4999054,4999058,4999059,4999071->{ post1. textLocation = arrayListOf(10,0,0,-1,0,0, 0, 0) }                        //down
-            4999004,4999012->{ post1. textLocation = arrayListOf(10,5,0,-1,0,0, 0, 0) }
-                }
-        return post1
-    }*/
-  /*  private fun updateTextSize(post: Post): Post {
-//        logi((" 57  ${post.postNum}"))
-      val post1=updateBackGroundColor(post)
-        when (post1.postNum){
-                4999029,4999058,4999059->{post1.postTextSize =arrayListOf(0, 14) }
-            4999002,4999007->{post1.postTextSize =arrayListOf(0, 15) }
-            4999003,4999005,4999006,4999008,4999009,4999012,4999015,4999016,4999017,4999021,4999027,4999031,4999032,4999039,4999040->{post1.postTextSize =arrayListOf(0, 16) }
-        }
-        return post1
-    }*/
-   /* private fun updateBackGroundColor(post: Post): Post {
-       val post1=updatePostTransparency(post)
-        when (post1.postNum){
-            4999014,4999025,4999039-> post1.postBackground =  "#000000"
-        }
-        return post1
-    }*/
- /*   private fun updatePostTransparency(post: Post): Post {
-       val post1 = post.copy()
-        when (post1.postNum){
-            4999025,4999014,4999039,4999052,4999071-> post1.postTransparency=10
-            4999026-> post1.postTransparency=3
-        }
-        return post1
-    }*/
 
     private fun drawHelperPostNum(currentPost: Post, constraintLayout: ConstraintLayout) {
         Helper1().createCenteredTextView2(currentPost.postNum.toString(),constraintLayout)
@@ -100,7 +65,7 @@ class DrawPostHelper: AppCompatActivity() {
 //        logi("61   post1.postNum=${post1.postNum}    ")
 //        logi("62   post1.textlocation=${post1.textLocation}    ")
         //    textLocation = arrayListOf(10,-1, 33,10,0,0, 0, 0)
-        val mainLayout = createLinearLayout(layout.context,post)
+        val mainLayout = createLinearLayout(context ,post)
         mainLayout.id = View.generateViewId()
         constraintLayout.addView(mainLayout)
         val constraintSet = ConstraintSet()
@@ -166,7 +131,7 @@ class DrawPostHelper: AppCompatActivity() {
         val pad =post.postPadding
         textView.setPadding(pad[0].toPx(),pad[1].toPx(), pad[2].toPx(), pad[3].toPx())
         val typeface = helper.getFamilyFont(post.postFontFamily)
-        textView.typeface = ResourcesCompat.getFont(layout.context, typeface)
+        textView.typeface = ResourcesCompat.getFont(context, typeface)
         textView.setLineSpacing(0f, post.lineSpacing)
         val layoutParams = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -178,8 +143,41 @@ class DrawPostHelper: AppCompatActivity() {
         return textView
 
     }
+    private fun loadImageWithMove(layout: ConstraintLayout, post: Post) {
+        val imageView=layout.findViewById<ImageView>(R.id.pagerImage)
+        val kenBurnsView = layout.findViewById<KenBurnsView>(R.id.tour_image)
+//        logi("Draw POst Helper 183           movingBackgroundMode=$movingBackgroundMode")
+        if (movingBackgroundMode== TRUE){
+            moveToTheSide(post, imageView  )
+            Glide.with(layout.context)
+                .load(post.imageUri)
+                .into(kenBurnsView)
+            kenBurnsView.resume()
+        }else{
+            Glide.with(layout.context)
+                .load(post.imageUri)
+                .into(imageView)
+            kenBurnsView.pause()
+        }
+    }
+    private fun moveToTheSide(post:Post,imageView:ImageView) {
+        val dxMovment = post.textLocation[4]
+        val dyMovment = post.textLocation[5]
+        if (dxMovment == 0 && dyMovment == 0) {
+            imageView.scaleType = ImageView.ScaleType.CENTER_CROP
+        } else {
+            imageView.scaleType = ImageView.ScaleType.MATRIX
+            val matrix = Matrix()
+            post.textLocation[4] = dxMovment
+            post.textLocation[5] = dyMovment
+            matrix.postTranslate(dxMovment.toPxf(), dyMovment.toPxf())
+//            logi( "DrawPostHelper 160  dxMovment=$dxMovment  post.textLocation=${post.textLocation}")
+            imageView.imageMatrix = matrix
+        }
+    }
 
-    private fun loadImage(layout: ConstraintLayout, post: Post) {
+ /*   private fun loadImage(layout: ConstraintLayout, post: Post) {
+//        logi("drawPostHelper 183     post.postNum=${post.postNum}")
         val imageView = ImageView(layout.context)
         imageView.id = View.generateViewId()
         val params = ConstraintLayout.LayoutParams(
@@ -192,20 +190,6 @@ class DrawPostHelper: AppCompatActivity() {
         params.startToStart = ConstraintLayout.LayoutParams.PARENT_ID
         params.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID
         imageView.layoutParams = params
-
-        /*  if (dxMovment==0 && dyMovment==0){
-              imageView.scaleType = ImageView.ScaleType.CENTER_CROP
-        }else{
-            imageView.scaleType = ImageView.ScaleType.MATRIX
-            val matrix = Matrix()
-            post.textLocation[4]=dxMovment
-            post.textLocation[5]=dyMovment
-            matrix.postTranslate(dxMovment.toPxf(),dyMovment.toPxf(),)
-            logi( "DrawPostHelper 160  dxMovment=$dxMovment  post.textLocation=${post.textLocation}")
-
-//       matrix.postScale(0.9f, 1.0f)
-            imageView.imageMatrix = matrix
-        }*/
 
         val dxMovment=post.textLocation[4]
         val dyMovment=post.textLocation[5]
@@ -221,11 +205,47 @@ class DrawPostHelper: AppCompatActivity() {
             imageView.imageMatrix = matrix
         }
 
+        val imageView1=layout.findViewById<ImageView>(R.id.pagerImage)
+        val kenBurnsView = layout.findViewById<KenBurnsView>(R.id.tour_image)
+        var movingBackgroundMode = pref.getString(SHARPREF_MOVING_BACKGROUND, FALSE)
+//        movingBackgroundMode= TRUE
+        if (movingBackgroundMode== TRUE){
+            //moveToTheSide(post, imageView  )
+            Glide.with(layout.context)
+                .load(post.imageUri)
+                .into(kenBurnsView)
+            kenBurnsView.resume()
+        }else{
+            Glide.with(layout.context)
+                .load(post.imageUri)
+                .into(imageView)
+            kenBurnsView.pause()
+        }
+
+
+
         layout.addView(imageView)
         Glide.with(layout.context)
             .load(post.imageUri)
             .into(imageView)
-    }
+    }*/
+    /*private fun loadImageWithMove(layout: ConstraintLayout, post: Post) {
+        val imageView=layout.findViewById<ImageView>(R.id.pagerImage)
+        val kenBurnsView = layout.findViewById<KenBurnsView>(R.id.tour_image)
+//        logi("Draw POst Helper 183           movingBackgroundMode=$movingBackgroundMode")
+        if (movingBackgroundMode== TRUE){
+            moveToTheSide(post, imageView  )
+            Glide.with(layout.context)
+                .load(post.imageUri)
+                .into(kenBurnsView)
+            kenBurnsView.resume()
+        }else{
+            Glide.with(layout.context)
+                .load(post.imageUri)
+                .into(imageView)
+            kenBurnsView.pause()
+        }
+    }*/
     fun Int.toPxf(): Float = (this * Resources.getSystem().displayMetrics.density)
     fun updateColor(str: String): String {
         return "#" + str.replace("[^A-Za-z0-9]".toRegex(), "")
