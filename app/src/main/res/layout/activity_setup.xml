@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back_ui"
+
+    android:keepScreenOn="true"
+
+    tools:context=".activities.SetupActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Button
+                android:id="@+id/btn_articles"
+                style="@style/ButtonFamily10"
+                android:text=" מאמרים "
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"  />
+            <Button
+                android:id="@+id/btn_grade_post"
+                style="@style/ButtonFamily10"
+                android:text="דרג את הפוסט הזה "
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_articles" />
+            <Button
+                android:id="@+id/btn_grade_order"
+                style="@style/ButtonFamily10"
+                android:text="סדר את הפוסטים לפי הדירוגים שלך"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_grade_post" />
+            <Button
+                android:id="@+id/btn_time_order"
+                style="@style/ButtonFamily10"
+                android:text="סדר את הפוסטים לפי תאריך פרסום "
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_grade_order"  />
+            <Button
+                android:id="@+id/btn_recommender_order"
+                style="@style/ButtonFamily10"
+                android:text="סדר את הפוסטים לפי מומלצים "
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_time_order"  />
+            <Button
+                android:id="@+id/btn_change_profile"
+                style="@style/ButtonFamily10"
+                android:text="שנה פרופיל"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_recommender_order"  />
+            <Button
+                android:id="@+id/btn_pass_to_new_post"
+                style="@style/ButtonFamily10"
+                android:text="עבור לפוסט אחר"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_change_profile"  />
+            <Button
+                android:id="@+id/btn_comments_posts"
+                style="@style/ButtonFamily10"
+                android:text="מסך הערות של הפוסט הבודד"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_pass_to_new_post"  />
+
+            <Button
+                android:id="@+id/btn_comments_general"
+                style="@style/ButtonFamily10"
+                android:text="מסך הערות - כללי"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_comments_posts"  />
+
+            <Button
+                android:id="@+id/btn_splash_screen"
+                style="@style/ButtonFamily10"
+                android:text="מסך פתיחה"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_comments_general"  />
+
+            <Button
+                android:id="@+id/btn_guest_option"
+                style="@style/ButtonFamily10"
+                android:text="מצב אורח"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_splash_screen"  />
+
+            <Button
+                android:id="@+id/btn_movingBackground"
+                style="@style/ButtonFamily10"
+                android:text="הזזת תמונת רקע"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_guest_option"  />
+
+            <Button
+                android:id="@+id/btn_help"
+                style="@style/ButtonFamily10"
+                android:text="עזרה"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_movingBackground"  />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

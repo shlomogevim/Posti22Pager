@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@drawable/back_ui"
+
+    android:keepScreenOn="true"
+    tools:context=".articles.AtoraActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <LinearLayout
+            android:id="@+id/atoraLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <!--  <Button
+                  android:id="@+id/btn_bereshit"
+                  style="@style/ButtonFamily10"
+                  android:text=" בראשית "
+                  app:layout_constraintEnd_toEndOf="parent"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintTop_toTopOf="parent"  />
+              <Button
+                  android:id="@+id/btn_befor_bereshit"
+                  style="@style/ButtonFamily10"
+                  android:text=" לפני בראשית "
+                  app:layout_constraintEnd_toEndOf="parent"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintTop_toBottomOf="@id/btn_bereshit"   />
+              <Button
+                  android:id="@+id/btn_komot"
+                  style="@style/ButtonFamily10"
+                  android:text=" מבנה כללי של הקומות "
+                  app:layout_constraintEnd_toEndOf="parent"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintTop_toBottomOf="@id/btn_befor_bereshit"   />
+  -->
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</LinearLayout>

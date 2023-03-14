@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.View
 import android.view.animation.AlphaAnimation
 import com.example.posti22pager.databinding.ActivitySplashBinding
+import com.example.posti22pager.model.Article
 import com.example.posti22pager.model.Post
 import com.example.posti22pager.tools.*
 import com.google.firebase.firestore.FirebaseFirestore
@@ -24,6 +25,8 @@ class SplashActivity : AppCompatActivity() {
     var delayInMicroSecond = 0
     var pressHelpBtn = false
     lateinit var timer: CountDownTimer
+    var articles = ArrayList<Article>()
+    val util = UtilityPost()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashBinding.inflate(layoutInflater)
@@ -33,6 +36,7 @@ class SplashActivity : AppCompatActivity() {
         helpBtnOperate()
         getHeadLines()
         downloadAllPost()
+        downloadAllArticles()
 //          pauseIt()
     }
 
@@ -145,7 +149,36 @@ class SplashActivity : AppCompatActivity() {
 //        }
         return "אורח"
     }
-
+    fun downloadAllArticles(): ArrayList<Article> {
+        articles.clear()
+        FirebaseFirestore.getInstance().collection(ARTICAL_REF)
+            .addSnapshotListener { value, error ->
+                if (value != null) {
+                    for (doc in value.documents) {
+                        val article = util.retriveArticleFromFirestore(doc)
+                        articles.add(article)
+                    }
+                    saveArticles()
+                    // showArticuls()
+                }
+            }
+        return articles
+    }
+    private fun saveArticles() {
+//        showArticls()
+        pref.edit().remove(SHARPREF_ARTICLRS_ARRAY).apply()
+        val editor = pref.edit()
+        val gson = Gson()
+        val json: String = gson.toJson(articles)
+        editor.putString(SHARPREF_ARTICLRS_ARRAY, json)
+        editor.apply()
+    }
+    private fun showArticls() {
+//        logi("SplashActivity 130    articles.size=${articles.size}")
+        for (index in 0 until articles.size) {
+//            logi("SplashActivity 132     index=$index  articles[index].aricleNum=${articles[index].aricleNum}")
+        }
+    }
     private fun timerWorks() {
 //          lottie.animate().translationY(1400f).setDuration(1000).setStartDelay(4000)
         // starteAnimateLottie()

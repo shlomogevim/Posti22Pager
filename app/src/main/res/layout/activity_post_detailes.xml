@@ -49,8 +49,18 @@
             style="@style/GreenButtonStyle"
             android:text="עזרה" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/postNumber"
+            style="@style/GreenButtonStyle"
+            
+            android:text="1234" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/movingModeBtn"
+            style="@style/GreenButtonStyle"
+            android:text="סטטי" />
+
+    <!--    <TextView
             android:id="@+id/postNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -66,9 +76,9 @@
             android:text="100"
             android:textColor="@color/orenge1"
             android:textSize="16sp" />
-        />
+        />-->
 
-        <ToggleButton
+      <!--  <ToggleButton
             android:id="@+id/movingModeBtn"
             style="@style/AppTheme.Button1"
 
@@ -80,7 +90,7 @@
             android:textColor="@color/white"
             android:textOff="סטטי"
             android:textOn="דינמי"
-            />
+            />-->
     </LinearLayout>
 
     <LinearLayout
@@ -157,4 +167,52 @@
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- android:layout_height="40dp"-->
+   <!--
+    <LinearLayout
+        android:id="@+id/button_layout_2"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/button_layout"
+        >
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/helpBtn"
+            style="@style/GreenButtonStyle"
+            android:text="עזרה" />
+
+
+        <TextView
+            android:id="@+id/postNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:background="@drawable/button_black_background"
+            android:backgroundTint="@color/broun1"
+            android:fontFamily="@font/a103_gadi_almog_regular_aaa"
+
+            android:gravity="center"
+            android:padding="1dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="100"
+            android:textColor="@color/orenge1"
+            android:textSize="16sp" />
+        />
+
+        <ToggleButton
+            android:id="@+id/movingModeBtn"
+            style="@style/AppTheme.Button1"
+
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_toEndOf="@+id/postNumber"
+            android:background="@drawable/category_toggle_moving"
+
+            android:textColor="@color/white"
+            android:textOff="סטטי"
+            android:textOn="דינמי"
+            />
+    </LinearLayout>
+-->

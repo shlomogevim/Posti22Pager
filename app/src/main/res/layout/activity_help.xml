@@ -4,6 +4,147 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/back_ui"
+
+    android:keepScreenOn="true"
+
     tools:context=".activities.HelpActivity">
 
+
+    <TextView
+        android:id="@+id/tv_text1"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/a103_gadi_almog_regular_aaa"
+        android:gravity="center_horizontal"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:id="@+id/tv_text2"
+        android:visibility="gone"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/a103_gadi_almog_regular_aaa"
+        android:gravity="center_horizontal"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:layout_marginTop="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_text1" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_text2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="5dp"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"  >
+
+            <Button
+                android:id="@+id/btnHelp_general"
+                style="@style/ButtonFamily10"
+                android:text="כמה מילים על האפליקציה "
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"  />
+
+            <Button
+                android:id="@+id/btnHelp_starting"
+                style="@style/ButtonFamily10"
+                android:text="התחלה "
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnHelp_general" />
+
+            <Button
+                android:id="@+id/btnHelp_postOrder"
+                style="@style/ButtonFamily10"
+                android:text="סדר הופעת הפוסטים"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnHelp_starting" />
+
+            <Button
+                android:id="@+id/btnHelp_GradePost"
+                style="@style/ButtonFamily10"
+                android:text="דירוג פוסט אישי"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnHelp_postOrder" />
+
+            <Button
+                android:id="@+id/btnHelp_orderOperation"
+                style="@style/ButtonFamily10"
+                android:text="סדר הופעת הפוסטים     איך עושם את זה"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnHelp_GradePost" />
+
+            <Button
+                android:id="@+id/btnHelp_RecommendedSystem"
+                style="@style/ButtonFamily10"
+                android:text="צורת עבודה יומיומית"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnHelp_orderOperation" />
+
+            <Button
+                android:id="@+id/btnHelp_comments"
+                style="@style/ButtonFamily10"
+                android:text="מסך הערות של הפוסט"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnHelp_RecommendedSystem" />
+
+            <Button
+                android:id="@+id/btnHelp_GeneralComments"
+                style="@style/ButtonFamily10"
+                android:text="מסך הערות כללי"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnHelp_comments" />
+
+            <Button
+                android:id="@+id/btnHelp_signIn"
+                style="@style/ButtonFamily10"
+                android:text="רישום"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnHelp_GeneralComments" />
+
+            <Button
+                android:id="@+id/btnHelp_CangeProfile"
+                style="@style/ButtonFamily10"
+                android:text="שנה פרופיל"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnHelp_signIn" />
+
+            <Button
+                android:id="@+id/btnHelp_setup"
+                style="@style/ButtonFamily10"
+                android:text="מסך הגדרות"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnHelp_CangeProfile" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
