@@ -40,9 +40,21 @@ class SplashActivity : AppCompatActivity() {
 //          pauseIt()
     }
 
+    private fun initData() {
+        //gradeArray = arrayListOf()
+        pref = getSharedPreferences(SHARPREF_ALMA, Context.MODE_PRIVATE)
+        pref.edit().remove(SHARPREF_ALMA).apply()
+        pref.edit().putInt(SHARPREF_CURRENT_POST_NUM, 0).apply()
+        pref.edit().putString(SHARPREF_SORT_SYSTEM, SHARPREF_SORT_BY_TIME_PUBLISH).apply()
+//        pref.edit().putString(SHARPREF_SORT_SYSTEM, SHARPREF_SORT_BY_RECOMMENDED).apply()
+        pref.edit().putString(SHARPREF_MOVING_BACKGROUND, FALSE).apply()
+//        delayInMicroSecond = pref.getInt(SHARPREF_SPLASH_SCREEN_DELAY, 10) * 1000
+        delayInMicroSecond = pref.getInt(SHARPREF_SPLASH_SCREEN_DELAY, 3) * 1000
+    }
+
     fun downloadAllPost(): ArrayList<Post> {
         var posts = ArrayList<Post>()
-        val ranges = helper.getRanges()
+ //       val ranges = helper.getRanges()
 //        posts.addAll(downloadPostsForRanges(ranges))
         posts.addAll(downloadPosts())
         return posts
@@ -80,8 +92,8 @@ class SplashActivity : AppCompatActivity() {
                         posts.add(post)
                     }
 //                        logi("57  posts.size=${posts.size}")
-                    val posts1 = createSuffelPosts(posts)
-                    savePosts(posts1)
+                //    val posts1 = createSuffelPosts(posts)
+                    savePosts(posts)
                     pref.edit().putInt(SHARPREF_TOTAL_POSTS_SIZE, posts.size).apply()
                 }
             }
@@ -103,17 +115,7 @@ class SplashActivity : AppCompatActivity() {
         return ArrayList(posts1)
     }
 
-    private fun initData() {
-        //gradeArray = arrayListOf()
-        pref = getSharedPreferences(SHARPREF_ALMA, Context.MODE_PRIVATE)
-        pref.edit().remove(SHARPREF_ALMA).apply()
-        pref.edit().putInt(SHARPREF_CURRENT_POST_NUM, 0).apply()
-        pref.edit().putString(SHARPREF_SORT_SYSTEM, SHARPREF_SORT_BY_TIME_PUBLISH).apply()
-//        pref.edit().putString(SHARPREF_SORT_SYSTEM, SHARPREF_SORT_BY_RECOMMENDED).apply()
-        pref.edit().putString(SHARPREF_MOVING_BACKGROUND, FALSE).apply()
-//        delayInMicroSecond = pref.getInt(SHARPREF_SPLASH_SCREEN_DELAY, 10) * 1000
-        delayInMicroSecond = pref.getInt(SHARPREF_SPLASH_SCREEN_DELAY, 3) * 1000
-    }
+
 
     private fun helpBtnOperate() {
         binding.btnHelp.setOnClickListener {
