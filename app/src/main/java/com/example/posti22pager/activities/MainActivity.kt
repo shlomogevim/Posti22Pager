@@ -22,40 +22,31 @@ import java.lang.reflect.Type
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
- private lateinit var binding:ActivityMainBinding
-    val helper=Helper()
+    private lateinit var binding: ActivityMainBinding
+    val helper = Helper()
     lateinit var pref: SharedPreferences
-    var posts=ArrayList<Post>()
+    var posts = ArrayList<Post>()
     lateinit var viewPager: ViewPager2
     var sortSystem = "NoValue"
-    var currentPostNum=0
+    var currentPostNum = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        posts=ArrayList<Post>()
-        viewPager=binding.viewpager
-
-
-        // downloadAllPost()
-
-
-//        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-//        supportActionBar?.hide()
-
+        posts = ArrayList<Post>()
+        viewPager = binding.viewpager
         pref = getSharedPreferences(SHARPREF_ALMA, Context.MODE_PRIVATE)
         currentPostNum = pref.getInt(SHARPREF_CURRENT_POST_NUM, 0)
         sortSystem = pref.getString(SHARPREF_SORT_SYSTEM, SHARPREF_SORT_BY_TIME_PUBLISH).toString()
-
-
     }
+
     override fun onResume() {
         super.onResume()
-       logi("MainActivity 56   onResume        ")
+//       logi("MainActivity 56   onResume        ")
         posts.clear()
-        posts=loadPosts()
+        posts = loadPosts()
 //        logi(" 59MainActivity posts.size= ${posts.size}")
 //        showPost(1)
         sortSystem = pref.getString(SHARPREF_SORT_SYSTEM, SHARPREF_SORT_BY_TIME_PUBLISH).toString()
@@ -63,62 +54,64 @@ class MainActivity : AppCompatActivity() {
 
 // sortSystem= SHARPREF_SORT_BY_SUFFEL
 
-       setSortSystemBackground()
+        setSortSystemBackground()
         sortPosts()
-        if (currentPostNum==0){
-            currentPostNum=posts[0].postNum
+        if (currentPostNum == 0) {
+            currentPostNum = posts[0].postNum
         }
         createViewPager10()
-       moveIt()
+        moveIt()
     }
 
     private fun showPost(index: Int) {
-                for ( post in posts){
-                    if (post.postNum==1){
-                        logi("MainActivity 76 post=$post")
-                    }
-                }
+        for (post in posts) {
+            if (post.postNum == 1) {
+//                logi("MainActivity 76 post=$post")
+            }
+        }
     }
 
     private fun sortPosts() {
         if (sortSystem == SHARPREF_SORT_BY_SUFFEL) {
-            posts=createSuffelPosts(posts)
+            posts = createSuffelPosts(posts)
         }
-        if (sortSystem == SHARPREF_SORT_BY_TIME_PUBLISH) {
-            posts.sortWith(compareByDescending({ it.timestamp }))
-            //  logi("MainActivity in sortPosts  111       sortSystem=$sortSystem       posts.size=${posts.size}")
-        }
+          if (sortSystem == SHARPREF_SORT_BY_TIME_PUBLISH) {
+              posts.sortWith(compareByDescending({ it.timestamp }))
+              //  logi("MainActivity in sortPosts  111       sortSystem=$sortSystem       posts.size=${posts.size}")
+          }
         if (sortSystem == SHARPREF_SORT_BY_RECOMMENDED) {
             posts.sortWith(compareByDescending({ it.postId }))                 //postId show recommended factor
         }
 //          persons.sortWith(compareBy({ it.name }, { it.age }))♠
         if (sortSystem == SHARPREF_SORT_BY_GRADE) {
             posts.removeAll({ it.grade == 0 })
-            logi("MainActivity in sortPosts  125       sortSystem=$sortSystem       posts.size=${posts.size}")
-            if (posts.size==0){
+//            logi("MainActivity in sortPosts  125       sortSystem=$sortSystem       posts.size=${posts.size}")
+            if (posts.size == 0) {
                 sortSystem == SHARPREF_SORT_BY_RECOMMENDED
                 posts.sortWith(compareByDescending({ it.postId }))
-            }else{
+            } else {
                 posts.sortWith(compareByDescending({ it.grade }))
             }
             // logi("MainActivity in sortPosts  121    sortSystem=$sortSystem       posts.size=${posts.size}")
         }
         savePosts()
     }
-   private fun moveIt() {
+
+    private fun moveIt() {
         //logi("MainActivity 129   currentPostNum=$currentPostNum")
 
         Handler().postDelayed(
             {
                 for (counter in 0 until posts.size) {
                     if (posts[counter].postNum == currentPostNum) {
-                     //  viewPager.scrollToPosition(counter)
+                        //  viewPager.scrollToPosition(counter)
                         // logi("MainActivity 136   counter=$counter")
                     }
                 }
             }, 100
         )
     }
+
     fun savePosts() {
         /* pref.edit().putString(SHARPREF_GRADE_ZERO, "true").apply()
          for (post in posts) {
@@ -137,38 +130,63 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setSortSystemBackground() {
-        if (sortSystem==SHARPREF_SORT_BY_RECOMMENDED){
-            binding.mainLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.backgroundRecommended))
+        if (sortSystem == SHARPREF_SORT_BY_POST_NUMBER) {
+            binding.mainLayout.setBackgroundColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.backgroundPostNumber
+                )
+            )
         }
-        if (sortSystem== SHARPREF_SORT_BY_TIME_PUBLISH){
-            binding.mainLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.backgroundTimePublish))
+        if (sortSystem == SHARPREF_SORT_BY_TIME_PUBLISH) {
+            binding.mainLayout.setBackgroundColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.backgroundTimePublish
+                )
+            )
         }
-        if (sortSystem== SHARPREF_SORT_BY_SUFFEL){
-            binding.mainLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.backgroundSuffel))
+        if (sortSystem == SHARPREF_SORT_BY_SUFFEL) {
+            binding.mainLayout.setBackgroundColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.backgroundSuffel
+                )
+            )
         }
-        if (sortSystem== SHARPREF_SORT_BY_GRADE){
-            binding.mainLayout.setBackgroundColor(ContextCompat.getColor(this,R.color.backgroundGrade))
+        if (sortSystem == SHARPREF_SORT_BY_RECOMMENDED) {
+            binding.mainLayout.setBackgroundColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.backgroundRecommended
+                )
+            )
+        }
+        if (sortSystem == SHARPREF_SORT_BY_GRADE) {
+            binding.mainLayout.setBackgroundColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.backgroundGrade
+                )
+            )
         }
     }
 
     private fun createViewPager10() {
 
-        val adapter =PostViewPagerAdapter(posts)
+        val adapter = PostViewPagerAdapter(posts)
         viewPager.adapter = adapter
 
-
-
 //        logi("posts1.size=${posts1.size}")
-     //   viewPager.adapter = PostViewPagerAdapter(posts)
         viewPager.setOffscreenPageLimit(2)
 
         val cardFlipPageTransformer = CardFlipPageTransformer2()
         cardFlipPageTransformer.setScalable(false)
         viewPager.setPageTransformer(cardFlipPageTransformer)
 
-        val  currentPostNum = pref.getInt(SHARPREF_CURRENT_POST_NUM, 0)
-        if (currentPostNum!=0){
-            val postIndex =posts.indexOfFirst { it.postNum== currentPostNum }
+        val currentPostNum = pref.getInt(SHARPREF_CURRENT_POST_NUM, 0)
+        if (currentPostNum != 0) {
+            val postIndex = posts.indexOfFirst { it.postNum == currentPostNum }
             viewPager.setCurrentItem(postIndex, true)
         }
 
@@ -217,10 +235,6 @@ class MainActivity : AppCompatActivity() {
                             val post = Helper().retrivePostFromFirestore(doc)
                             posts.add(post)
                         }
-
-//                     createViewPager(posts)
-//                       createViewPagerWithSuffel_1(posts)
-//                       createViewPagerWithSuffel_2(posts)
                         createViewPagerWithSuffel_3(posts)
                     }
                 }
@@ -233,11 +247,11 @@ class MainActivity : AppCompatActivity() {
         posts1.shuffle(Random(System.currentTimeMillis()))
         Handler().postDelayed({
             createViewPager(ArrayList(posts1))
-        },1000)
+        }, 1000)
     }
 
     private fun createViewPagerWithSuffel_2(posts: ArrayList<Post>) {
-        task1(posts){result->
+        task1(posts) { result ->
             createViewPager(ArrayList(result))
         }
     }
@@ -254,6 +268,7 @@ class MainActivity : AppCompatActivity() {
         posts1.shuffle(Random(System.currentTimeMillis()))
         callback(ArrayList(posts1))
     }
+
     private fun createViewPager(posts: ArrayList<Post>) {
         binding.viewpager.adapter = PostViewPagerAdapter(posts)
 

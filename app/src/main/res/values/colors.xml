@@ -33,6 +33,7 @@
     <color name="colorBorder">#E8E6E6</color>
     <color name="colorDarkGrey">#878787</color>
 
+    <color name="backgroundPostNumber">#1B1A18</color>
     <color name="backgroundTimePublish">#2DD3F4</color>
     <color name="backgroundSuffel">#9C27B0</color>
     <color name="backgroundRecommended">#6fc27c</color>

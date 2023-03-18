@@ -28,6 +28,7 @@ class Helper1 : AppCompatActivity() {
         val textView = createTextView(message, context)
         textView.id= View.generateViewId()
         textView.textSize=20f
+        textView.setPadding(100,0,100,0)
         textView.setBackgroundColor(Color.WHITE)
         addTextViewToLayout(textView, layout)
         centerTextView(textView, layout)

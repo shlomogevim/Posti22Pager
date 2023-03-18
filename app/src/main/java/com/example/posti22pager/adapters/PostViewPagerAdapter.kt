@@ -2,6 +2,7 @@ package com.example.posti22pager.adapters
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,9 @@ import com.google.gson.Gson
 
 class PostViewPagerAdapter(private val posts: ArrayList<Post>) : RecyclerView.Adapter<PostViewPagerAdapter.ViewHolder>() {
 
+    init {
+        setHasStableIds(true)
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_post, parent, false)
         return ViewHolder(view,parent.context)
@@ -28,6 +32,10 @@ class PostViewPagerAdapter(private val posts: ArrayList<Post>) : RecyclerView.Ad
 
     override fun getItemCount(): Int {
         return posts.size
+    }
+    override fun getItemId(position: Int): Long {
+        // Use the post's unique identifier as the item ID
+        return posts[position].postNum.toLong()
     }
 
     inner class ViewHolder(itemView: View,context: Context) : RecyclerView.ViewHolder(itemView) {
@@ -47,12 +55,28 @@ class PostViewPagerAdapter(private val posts: ArrayList<Post>) : RecyclerView.Ad
         }
 
         fun bindItems(post: Post) {
+//            logi("PostPagerAdapter 51 post.postNum=${post.postNum}")
             DrawPostHelper(layout.context).drawPost(layout, post)
         }
     }
+    fun logi(message: String) {
+        Log.i("gg", message)
+    }
 }
 
+/*fun bindItems(post: Post) {
+        // Reset the state of the views
+        postTitleTextView.text = ""
+        postImageView.setImageDrawable(null)
 
+        // Set the new data for the views
+        postTitleTextView.text = post.title
+        // Load the image into the ImageView using a library like Picasso or Glide
+        // For example:
+        Glide.with(itemView)
+             .load(post.imageUrl)
+             .into(postImageView)
+    }*/
 
 
 

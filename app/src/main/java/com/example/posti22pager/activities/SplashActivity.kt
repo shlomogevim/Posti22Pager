@@ -45,8 +45,7 @@ class SplashActivity : AppCompatActivity() {
         pref = getSharedPreferences(SHARPREF_ALMA, Context.MODE_PRIVATE)
         pref.edit().remove(SHARPREF_ALMA).apply()
         pref.edit().putInt(SHARPREF_CURRENT_POST_NUM, 0).apply()
-        pref.edit().putString(SHARPREF_SORT_SYSTEM, SHARPREF_SORT_BY_TIME_PUBLISH).apply()
-//        pref.edit().putString(SHARPREF_SORT_SYSTEM, SHARPREF_SORT_BY_RECOMMENDED).apply()
+        pref.edit().putString(SHARPREF_SORT_SYSTEM, SHARPREF_SORT_BY_POST_NUMBER).apply()
         pref.edit().putString(SHARPREF_MOVING_BACKGROUND, FALSE).apply()
 //        delayInMicroSecond = pref.getInt(SHARPREF_SPLASH_SCREEN_DELAY, 10) * 1000
         delayInMicroSecond = pref.getInt(SHARPREF_SPLASH_SCREEN_DELAY, 3) * 1000
